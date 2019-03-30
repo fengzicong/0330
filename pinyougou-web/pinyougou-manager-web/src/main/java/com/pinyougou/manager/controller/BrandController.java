@@ -17,7 +17,7 @@ public class BrandController {
      * 引用服务接口代理对象
      * timeout: 调用服务接口方法超时时间毫秒数
      */
-    @Reference(timeout = 10000)
+    @Reference(timeout = 10000 )
     private BrandService brandService;
 
 //    /** 查询全部品牌 */
