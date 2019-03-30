@@ -20,11 +20,11 @@ public class BrandController {
     @Reference(timeout = 10000 )
     private BrandService brandService;
 
-//    /** 查询全部品牌 */
-//    @GetMapping("/findAll")
-//    public List<Brand> findAll(){
-//        return brandService.findAll();
-//    }
+    /** 查询全部品牌 */
+    @GetMapping("/findAll")
+    public List<Brand> findAll(){
+        return brandService.findAll();
+    }
     @GetMapping("/findByPage")
     //要返回的数据:1.brands集合;2总记录数; {total:xxx, rows :[{},{}]}
     public PageResult findByPage(Brand brand,Integer page,Integer rows){
@@ -53,6 +53,17 @@ public class BrandController {
     public boolean update(@RequestBody Brand brand){
         try {
             brandService.update(brand);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @GetMapping("/delete")
+    public boolean delete(Long[] ids){
+        try {
+            brandService.deleteAll(ids);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
