@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/brand")
@@ -69,5 +70,10 @@ public class BrandController {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @GetMapping("/findBrandList")
+    public List<Map<String,Object>> findBrandList(){
+        return brandService.findAllByIdAndName();
     }
 }

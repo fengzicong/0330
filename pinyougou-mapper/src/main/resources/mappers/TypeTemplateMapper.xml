@@ -4,5 +4,20 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pinyougou.mapper.TypeTemplateMapper">
+<select id="findAll" resultType="com.pinyougou.pojo.TypeTemplate">
+	select * from tb_type_template
+	<where>
+		<if test="name!=null and name !=''">
+			name like concat('%',#{name},'%')
+		</if>
+	</where>
+	ORDER by id asc
+</select>
 
+	<delete id="deleteAll">
+		delete from tb_type_template where id IN
+		<foreach collection="ids" item="id" separator="," open="(" close=")">
+			#{id}
+		</foreach>
+	</delete>
 </mapper>
