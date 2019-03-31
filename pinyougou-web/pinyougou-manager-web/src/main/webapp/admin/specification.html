@@ -33,7 +33,8 @@
 				<div class="form-group form-inline">
 					<div class="btn-group">
 						<button type="button" class="btn btn-default" title="新建"
-							data-toggle="modal" data-target="#editModal">
+							data-toggle="modal" data-target="#editModal"
+						ng-click="entity.specificationOptions=[{}]">
 							<i class="fa fa-file-o"></i> 新建
 						</button>
 						<button type="button" class="btn btn-default" title="删除">
@@ -77,6 +78,7 @@
 						<!--</td>-->
 					<!--</tr>-->
 					<!--循环内容-->
+					{{entity}}
 					<tr ng-repeat="entity in dataList">
 						<td><input type="checkbox"></td>
 						<td>{{entity.id}}</td>
@@ -105,13 +107,13 @@
 				<table class="table table-bordered table-striped"  width="800px">
 			      	<tr>
 			      		<td>规格名称</td>
-			      		<td><input  class="form-control" placeholder="规格名称" >  </td>
+			      		<td><input  class="form-control" placeholder="规格名称" ng-model="entity.specName">  </td>
 			      	</tr>
 				 </table>				
 				 
 				 <!-- 规格选项 -->
 				 <div class="btn-group">
-	                  <button type="button" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i> 新增规格选项</button>
+	                  <button type="button" class="btn btn-default" title="新建"  ng-click="addTableRow()" ><i class="fa fa-file-o"></i> 新增规格选项</button>
 	                  
 	             </div>
 				 
@@ -124,46 +126,37 @@
 		                    </tr>	
 	                    </thead>
 	                    <tbody>
-	                      <tr>
-					            <td>
-					            	<input  class="form-control" placeholder="规格选项"> 
-					            </td>
-					            <td>
-					            	<input  class="form-control" placeholder="排序"> 
-					            </td>
-								<td>
-									<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-								</td>
-	                      </tr>
-						  <tr>
-					            <td>
-					            	<input  class="form-control" placeholder="规格选项"> 
-					            </td>
-					            <td>
-					            	<input  class="form-control" placeholder="排序"> 
-					            </td>
-								<td>
-									<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-								</td>
-	                      </tr>
-						  <tr>
-					            <td>
-					            	<input  class="form-control" placeholder="规格选项"> 
-					            </td>
-					            <td>
-					            	<input  class="form-control" placeholder="排序"> 
-					            </td>
-								<td>
-									<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-								</td>
-	                      </tr>
+	                      <!--<tr>-->
+					            <!--<td>-->
+					            	<!--<input  class="form-control" placeholder="规格选项"> -->
+					            <!--</td>-->
+					            <!--<td>-->
+					            	<!--<input  class="form-control" placeholder="排序"> -->
+					            <!--</td>-->
+								<!--<td>-->
+									<!--<button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>-->
+								<!--</td>-->
+	                      <!--</tr>-->
+						  <tr ng-repeat="so in entity.specificationOptions">
+							  <td>
+								  <input  class="form-control" placeholder="规格选项" ng-model="so.optionName">
+							  </td>
+							  <td>
+								  <input  class="form-control" placeholder="排序" ng-model="so.orders">
+							  </td>
+							  <td>
+								  <button type="button" class="btn btn-default" title="删除"
+								  ng-click="deleteTableRow($index)"><i class="fa fa-trash-o"></i> 删除</button>
+							  </td>
+						  </tr>
+
 	                    </tbody>
 				  </table>
 				<!--放分页指令-->
 				<tm-pagination conf="paginationConf"></tm-pagination>
 			</div>
 			<div class="modal-footer">						
-				<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">保存</button>
+				<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="saveOrUpdate()">保存</button>
 				<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 			</div>
 		  </div>

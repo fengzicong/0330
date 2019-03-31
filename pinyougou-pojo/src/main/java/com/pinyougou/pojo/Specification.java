@@ -23,6 +23,7 @@ public class Specification implements Serializable{
 	/** 规格名称 */
 	@Column(name="spec_name")
     private String specName;
+
     /** 规格属性集合 */
 	@Transient
     private List<SpecificationOption> specificationOptions; 
