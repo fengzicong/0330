@@ -1,5 +1,6 @@
 package com.pinyougou.service;
 
+import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.pojo.Goods;
 import java.util.List;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ public interface GoodsService {
 	void delete(Serializable id);
 
 	/** 批量删除 */
-	void deleteAll(Serializable[] ids);
+	void deleteAll(Long[] ids);
 
 	/** 根据主键id查询 */
 	Goods findOne(Serializable id);
@@ -29,6 +30,9 @@ public interface GoodsService {
 	List<Goods> findAll();
 
 	/** 多条件分页查询 */
-	List<Goods> findByPage(Goods goods, int page, int rows);
+	PageResult findByPage(Goods goods, int page, int rows);
 
+    void updateStatus(String status, Long[] ids);
+
+    void updateMarketable(String status, Long[] ids);
 }
